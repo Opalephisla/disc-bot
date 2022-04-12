@@ -14,7 +14,7 @@ slash = SlashCommand(bot)
 
 @slash.slash(name="test")
 async def test(ctx: SlashContext):
-    embed = Embed(title="Embed Test")
+    embed = Embed(title="Embed Test 123")
     await ctx.send(embed=embed)
 
 
