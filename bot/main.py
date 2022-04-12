@@ -27,7 +27,8 @@ async def on_message(message):
         return
 
     if message.content.startswith("!stats"):
-        await message.channel.send(embed=server.stats(message.author))
+        await message.channel.send(embed=server.get_stats(message.author))
+        return
 
     if message.content.endswith("quoi"):
         await message.channel.send("feur")
