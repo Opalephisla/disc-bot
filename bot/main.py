@@ -4,11 +4,15 @@ import os
 #import dnspython
 import server
 from discord.ext import commands
-from discord_slash import SlashCommand
+from discord_slash import SlashCommand, SlashContext
 
-bot = commands.Bot(command_prefix="!")
-slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
-bot.load_extension("cog")
+bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
+slash = SlashCommand(bot)
+
+@slash.slash(name="test")
+async def _test(ctx: SlashContext):
+    embed = discord.Embed(title="embed test")
+    await ctx.send(content="test", embeds=[embed])
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 
