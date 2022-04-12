@@ -32,7 +32,9 @@ async def on_message(message):
     else:
         server.user_messages[message.author.id] = 1
     if server.user_messages[message.author.id] == 5:
-        await message.channel.purge(limit=5)
+        await message.channel.send(f"{message.author.mention} has been deleted for spamming")
+        await message.author.send(f"You have been deleted for spamming")
+        await message.delete()
         server.user_messages[message.author.id] = 0
         
 server.server()
