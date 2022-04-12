@@ -3,28 +3,20 @@ import os
 #import pynacl
 #import dnspython
 import server
-import discord-interactions
+import interactions
 from discord.ext import commands
-from discord_slash import SlashCommand
 
+from discord import Client, Intents, Embed
+from discord_slash import SlashCommand, SlashContext
+
+bot = Client(intents=Intents.default())
+slash = SlashCommand(bot)
 bot = commands.Bot(command_prefix="!")
 
-client = interactions.Client(token="...")
-
-@bot.command()
-async def hello(ctx):
-    await ctx.send("Hello from discord.py!")
-
-@client.command(
-    name="test",
-    description="this is just a testing command."
-)
-async def test(ctx):
-    await ctx.send("Hello from discord-interactions!")
-
-@slash.slash(name="ping", guild_ids=guild_ids)
-async def _ping(ctx):
-    await ctx.send("Pong!")
+@slash.slash(name="test")
+async def test(ctx: SlashContext):
+    embed = Embed(title="Embed Test")
+    await ctx.send(embed=embed)
 
 
 TOKEN = os.getenv("DISCORD_TOKEN")
