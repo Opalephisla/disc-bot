@@ -24,18 +24,12 @@ async def on_message(message):
     if message.content.endswith("quoi"):
         await message.channel.send("feur")
 
-    # counts how many messages are sent consecutively by a user and deletes them if it reaches 5
+    # counts how many messages the user sent in his lifetime and replies with an embed of his stats
     if message.author.id == bot.user.id:
         return
-    if message.author.id in server.user_messages:
-        server.user_messages[message.author.id] += 1
-    else:
-        server.user_messages[message.author.id] = 1
-    if server.user_messages[message.author.id] == 5:
-        await message.channel.send(f"{message.author.mention} has been deleted for spamming")
-        await message.author.send(f"You have been deleted for spamming")
-        await message.delete()
-        server.user_messages[message.author.id] = 0
+    if message.content.startswith("!stats"):
+        await message.channel.send(embed=server.stats(message.author))
+
         
 server.server()
 bot.run(TOKEN)
