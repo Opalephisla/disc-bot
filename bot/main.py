@@ -21,15 +21,16 @@ async def ping(ctx):
 #on_message event handler for users ending sentences with "quoi" and replying "feur"
 @bot.event
 async def on_message(message):
-    if message.content.endswith("quoi"):
-        await message.channel.send("feur")
 
     # counts how many messages the user sent in his lifetime and replies with an embed of his stats
     if message.author.id == bot.user.id:
         return
+
     if message.content.startswith("!stats"):
         await message.channel.send(embed=server.stats(message.author))
 
+    if message.content.endswith("quoi"):
+        await message.channel.send("feur")
         
 server.server()
 bot.run(TOKEN)
