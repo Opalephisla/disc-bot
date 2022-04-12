@@ -18,6 +18,17 @@ async def on_ready():
 async def ping(ctx):
     await ctx.send("pong")
 
+
+messagecounts = {}
+
+@bot.command()
+async def serverstats(ctx):
+    embed=discord.Embed(title=f"Statystyki serwera {ctx.guild.name}")
+    embed.add_field(name="Users:", value=ctx.guild.member_count, inline=False)
+    embed.add_field(name="Channels:", value=len(ctx.guild.channels), inline=False)
+    embed.add_field(name="Messages sent:", value=messagecounts[ctx.guild.id], inline=False)
+    await ctx.send(embed=embed)
+
 #on_message event handler for users ending sentences with "quoi" and replying "feur"
 @bot.event
 async def on_message(message):
@@ -26,9 +37,9 @@ async def on_message(message):
     if message.author.id == bot.user.id:
         return
 
-    if message.content.startswith("!stats"):
-        await message.channel.send(embed=server.get_stats(message.author))
-        return
+    if message.guild.id not in messagecounts.keys():
+        messagecounts[message.guild.id] = 0
+    messagecounts[message.guild.id] += 1
 
     if message.content.endswith("quoi"):
         await message.channel.send("feur")
