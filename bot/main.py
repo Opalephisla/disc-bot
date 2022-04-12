@@ -4,15 +4,13 @@ import os
 #import dnspython
 import server
 from discord.ext import commands
-from discord_slash import SlashCommand, SlashContext
+from discord_slash import SlashCommand
 
-bot = commands.Bot(command_prefix="!", intents=discord.Intents.all())
-slash = SlashCommand(bot)
+bot = commands.Bot(command_prefix="!")
+slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
 
-@slash.slash(name="test")
-async def _test(ctx: SlashContext):
-    embed = discord.Embed(title="embed test")
-    await ctx.send(content="test", embeds=[embed])
+bot.load_extension("cog")
+
 
 TOKEN = os.getenv("DISCORD_TOKEN")
 
@@ -57,5 +55,6 @@ async def on_message(message):
         await message.channel.send("feur")
     
     await bot.process_commands(message)
+
 server.server()
 bot.run(TOKEN)
