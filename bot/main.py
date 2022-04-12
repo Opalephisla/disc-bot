@@ -18,5 +18,11 @@ async def on_ready():
 async def ping(ctx):
     await ctx.send("pong")
 
+#on_message event handler for users ending sentences with "quoi" and replying "feur"
+@bot.event
+async def on_message(message):
+    if message.content.endswith("quoi"):
+        await message.channel.send("feur")
+        
 server.server()
 bot.run(TOKEN)
