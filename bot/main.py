@@ -10,6 +10,8 @@ from discord_slash import SlashCommand, SlashContext
 import server
 
 bot = commands.Bot(command_prefix="!")
+bot = Client(intents=Intents.default())
+slash = SlashCommand(bot)
 
 
 @slash.slash(name="test")
@@ -64,9 +66,6 @@ async def on_message(message):
     if message.content.endswith("quoi"):
         await message.channel.send("feur")
 
-
-bot = Client(intents=Intents.default())
-slash = SlashCommand(bot)
 
 server.server()
 
