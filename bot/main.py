@@ -1,4 +1,6 @@
-# -*- coding: utf-8 -*-
+import discord
+import server
+from discord.ext import commands
 
 import asyncio
 import functools
@@ -527,5 +529,8 @@ async def on_ready():
 @tasks.loop(seconds=10)
 async def change_status():
     await bot.change_presence(activity = discord.Game(next(status)))
-  
-bot.run(os.getenv("TOKEN"))
+
+TOKEN = os.getenv("DISCORD_TOKEN")
+
+server.server()
+bot.run(TOKEN)
