@@ -3,7 +3,6 @@ import os
 #import pynacl
 #import dnspython
 import server
-import interactions
 from discord.ext import commands
 
 from discord import Client, Intents, Embed
