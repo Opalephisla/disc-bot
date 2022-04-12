@@ -298,7 +298,7 @@ class Music(commands.Cog):
         ctx.voice_state = self.get_voice_state(ctx)
 
     async def cog_command_error(self, ctx: commands.Context, error: commands.CommandError):
-        await ctx.send('An error occurred: {}'.format(str(error)))
+        await ctx.send('Une erreur est survenue: {}'.format(str(error)))
 
     @commands.command(name='join', invoke_without_subcommand=True)
     async def _join(self, ctx: commands.Context):
@@ -509,7 +509,7 @@ class Music(commands.Cog):
                 raise commands.CommandError('Le bot se trouve déjà dans un salon vocal.')
 
 
-bot = commands.Bot('botpal.', description='Le bot d\'Opal`\' le bg.')
+bot = commands.Bot('botpal.', description='Le bot d\'Opal\' le bg.')
 bot.add_cog(Music(bot))
 
 
@@ -520,11 +520,12 @@ async def on_command_error(ctx, error):
 
 @bot.event
 async def on_ready():
+    # set dynamic status changing every 10 seconds
     await bot.wait_until_ready()
     change_status.start()
     
 @tasks.loop(seconds=10)
 async def change_status():
-    await bot.change_presence(activity=discord.Game(next(status)))
-
-bot.run(os.getenv("TOKEN"))
+    await bot.change_presence(activity = discord.Game(next(status)))
+  
+bot.run("TOKEN")
