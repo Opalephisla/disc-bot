@@ -30,8 +30,8 @@ async def serverstats(ctx):
     await ctx.send(embed=embed)
 
 @bot.command()
-async def userstats(ctx, member: discord.Member):
-    embed=discord.Embed(title=f"Statistiques de {member.name}")
+async def userstats(ctx, user.mention):
+    embed=discord.Embed(title=f"Statistiques de {user.mention}")
     embed.add_field(name="Nombre de messages envoyés:", value=messagecounts[member.id], inline=False)
     await ctx.send(embed=embed)
 
