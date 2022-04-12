@@ -23,6 +23,19 @@ async def ping(ctx):
 async def on_message(message):
     if message.content.endswith("quoi"):
         await message.channel.send("feur")
+
+    # counts how many messages are sent consecutively by a user
+    if message.author.id == bot.user.id:
+        return
+    if message.author.id not in server.users:
+        server.users[message.author.id] = [message.author, 1]
+    else:
+        server.users[message.author.id][1] += 1
+    
+    # if user has sent more than 5 messages consecutively, delete them
+    if server.users[message.author.id][1] > 5:
+        message.author.delete()
+        await message.channel.send(f"{message.author.mention} has been deleted for spamming")
         
 server.server()
 bot.run(TOKEN)
