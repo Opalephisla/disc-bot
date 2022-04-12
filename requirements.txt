@@ -4,3 +4,4 @@ python-dotenv
 PyNaCl
 dnspython
 discord-py-slash-command
+discord-py-interactions
