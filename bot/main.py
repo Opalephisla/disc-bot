@@ -9,8 +9,8 @@ from discord_slash import SlashCommand, SlashContext
 # import dnspython
 import server
 
-bot = commands.Bot(command_prefix="!")
 bot = Client(intents=Intents.default())
+bot = commands.Bot(command_prefix="!")
 slash = SlashCommand(bot)
 
 
