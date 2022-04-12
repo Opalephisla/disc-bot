@@ -5,23 +5,11 @@ import functools
 import itertools
 import math
 import random
-import os, platform
-try:
-    import nacl
-except ImportError:
-    try:
-        if platform.system().lower().startswith('win'):
-            os.system("pip install pynacl")
-        else:
-            os.system("pip3 install pynacl")
-    except Exception as e:
-        print("Error:", e)
-        exit()
-
-from itertools import cycle
-
+import os
 import discord
 import youtube_dl
+
+from itertools import cycle
 from async_timeout import timeout
 from discord.ext import commands, tasks
 
