@@ -5,8 +5,6 @@ from discord import Client, Embed, Intents
 from discord.ext import commands
 from discord_slash import SlashCommand, SlashContext
 
-# import pynacl
-# import dnspython
 import server
 
 bot = Client(intents=Intents.default())
@@ -20,7 +18,6 @@ async def test(ctx: SlashContext):
     await ctx.send(embed=embed)
 
 
-# slash command to show help menu
 @slash.slash(name="help")
 async def help(ctx: SlashContext):
     embed = Embed(title="Menu d'aide pour les commandes du bot {bot.user.name}")
@@ -30,7 +27,6 @@ async def help(ctx: SlashContext):
     await ctx.send(embed=embed)
 
 
-# fetch current weather for Brest, France and return it as an embed
 @slash.slash(name="meteo")
 async def meteo(ctx: SlashContext):
     embed = Embed(title="Météo à Brest")
@@ -41,7 +37,6 @@ async def meteo(ctx: SlashContext):
     await ctx.send(embed=embed)
 
 
-# slash command for metis platform link
 @slash.slash(name="metis")
 async def metis(ctx: SlashContext):
     embed = Embed(title="Lien vers la plateforme Métis de l'AFPA")
