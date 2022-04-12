@@ -43,6 +43,7 @@ async def on_message(message):
 
     if message.content.endswith("quoi"):
         await message.channel.send("feur")
-        
+    
+    await bot.process_commands(message)
 server.server()
 bot.run(TOKEN)
