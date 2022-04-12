@@ -7,9 +7,15 @@ from discord.ext import commands
 from discord_slash import SlashCommand
 
 bot = commands.Bot(command_prefix="!")
-slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
 
-bot.load_extension("cog")
+client = discord.Client(intents=discord.Intents.all())
+slash = SlashCommand(client, sync_commands=True) # Declares slash commands through the client.
+
+guild_ids = [946813409121411172] # Put your server IDs in this array.
+
+@slash.slash(name="ping", guild_ids=guild_ids)
+async def _ping(ctx):
+    await ctx.send("Pong!")
 
 
 TOKEN = os.getenv("DISCORD_TOKEN")
