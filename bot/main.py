@@ -30,16 +30,14 @@ async def serverstats(ctx):
     await ctx.send(embed=embed)
 
 @bot.command()
-async def userstats(ctx, user.mention):
-    embed=discord.Embed(title=f"Statistiques de {user.mention}")
+async def userinfo(ctx, member: discord.Member):
+    embed=discord.Embed(title=f"Statistiques de {member.name}")
     embed.add_field(name="Nombre de messages envoyés:", value=messagecounts[member.id], inline=False)
     await ctx.send(embed=embed)
 
-#on_message event handler for users ending sentences with "quoi" and replying "feur"
 @bot.event
 async def on_message(message):
 
-    # counts how many messages the user sent in his lifetime and replies with an embed of his stats
     if message.author.id == bot.user.id:
         return
 
