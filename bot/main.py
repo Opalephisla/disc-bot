@@ -20,6 +20,35 @@ async def test(ctx: SlashContext):
     await ctx.send(embed=embed)
 
 
+# slash command to show help menu
+@slash.slash(name="help")
+async def help(ctx: SlashContext):
+    embed = Embed(title="Menu d'aide pour les commandes du bot {bot.user.name}")
+    embed.add_field(name="/help", value="Permet d'afficher ce menu", inline=False)
+    embed.add_field(name="/metis", value="Affiche  un lien vers la plateforme Métis de l'AFPA", inline=False)
+    embed.add_field(name="/meteo", value="Renvoie la météo actuelle à Brest", inline=False)
+    await ctx.send(embed=embed)
+
+
+# fetch current weather for Brest, France and return it as an embed
+@slash.slash(name="meteo")
+async def meteo(ctx: SlashContext):
+    embed = Embed(title="Météo à Brest")
+    embed.add_field(name="Température", value=server.get_weather_brest()[0], inline=False)
+    embed.add_field(name="Humidité", value=server.get_weather_brest()[1], inline=False)
+    embed.add_field(name="Vent", value=server.get_weather_brest()[2], inline=False)
+    embed.add_field(name="Pluie", value=server.get_weather_brest()[3], inline=False)
+    await ctx.send(embed=embed)
+
+
+# slash command for metis platform link
+@slash.slash(name="metis")
+async def metis(ctx: SlashContext):
+    embed = Embed(title="Lien vers la plateforme Métis de l'AFPA")
+    embed.add_field(name="Lien", value="https://metis.afpa.fr/", inline=False)
+    await ctx.send(embed=embed)
+
+
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user.name}({bot.user.id})")
