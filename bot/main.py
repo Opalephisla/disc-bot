@@ -528,4 +528,4 @@ async def on_ready():
 async def change_status():
     await bot.change_presence(activity = discord.Game(next(status)))
   
-bot.run("TOKEN")
+bot.run(os.getenv("TOKEN"))
