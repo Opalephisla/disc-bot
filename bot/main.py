@@ -3,15 +3,24 @@ import os
 #import pynacl
 #import dnspython
 import server
+import interactions
 from discord.ext import commands
 from discord_slash import SlashCommand
 
 bot = commands.Bot(command_prefix="!")
 
-client = discord.Client(intents=discord.Intents.all())
-slash = SlashCommand(client, sync_commands=True) # Declares slash commands through the client.
+client = interactions.Client(token="...")
 
-guild_ids = [946813409121411172] # Put your server IDs in this array.
+@bot.command()
+async def hello(ctx):
+    await ctx.send("Hello from discord.py!")
+
+@client.command(
+    name="test",
+    description="this is just a testing command."
+)
+async def test(ctx):
+    await ctx.send("Hello from discord-interactions!")
 
 @slash.slash(name="ping", guild_ids=guild_ids)
 async def _ping(ctx):
