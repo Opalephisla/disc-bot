@@ -23,10 +23,16 @@ messagecounts = {}
 
 @bot.command()
 async def serverstats(ctx):
-    embed=discord.Embed(title=f"Statystyki serwera {ctx.guild.name}")
-    embed.add_field(name="Users:", value=ctx.guild.member_count, inline=False)
-    embed.add_field(name="Channels:", value=len(ctx.guild.channels), inline=False)
-    embed.add_field(name="Messages sent:", value=messagecounts[ctx.guild.id], inline=False)
+    embed=discord.Embed(title=f"Statistiques du serveur {ctx.guild.name}")
+    embed.add_field(name="Nombre d'utilisateurs:", value=ctx.guild.member_count, inline=False)
+    embed.add_field(name="Nombres de salons:", value=len(ctx.guild.channels), inline=False)
+    embed.add_field(name="Nombre total de messages envoyés:", value=messagecounts[ctx.guild.id], inline=False)
+    await ctx.send(embed=embed)
+
+@bot.command()
+async def userstats(ctx, member: discord.Member):
+    embed=discord.Embed(title=f"Statistiques de {member.name}")
+    embed.add_field(name="Nombre de messages envoyés:", value=messagecounts[member.id], inline=False)
     await ctx.send(embed=embed)
 
 #on_message event handler for users ending sentences with "quoi" and replying "feur"
