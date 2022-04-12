@@ -4,8 +4,12 @@ import os
 #import dnspython
 import server
 from discord.ext import commands
+from discord_slash import SlashCommand
 
 bot = commands.Bot(command_prefix="!")
+slash = SlashCommand(bot, sync_commands=True, sync_on_cog_reload=True)
+bot.load_extension("cog")
+
 TOKEN = os.getenv("DISCORD_TOKEN")
 
 @bot.event
