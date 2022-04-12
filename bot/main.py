@@ -3,7 +3,7 @@ import os
 #import pynacl
 #import dnspython
 import server
-import interactions
+import discord-interactions
 from discord.ext import commands
 from discord_slash import SlashCommand
 
