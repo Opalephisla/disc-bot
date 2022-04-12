@@ -11,6 +11,8 @@ TOKEN = os.getenv("DISCORD_TOKEN")
 @bot.event
 async def on_ready():
     print(f"Logged in as {bot.user.name}({bot.user.id})")
+    # change bot status to "Studying WEB Development"
+    await bot.change_presence(activity=discord.Game(name="Studying WEB Development"))
 
 @bot.command()
 async def ping(ctx):
