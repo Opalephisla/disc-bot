@@ -27,7 +27,7 @@ def get_weather_brest():
 
     import requests
 
-    url = "http://api.openweathermap.org/data/2.5/weather?q=Brest,fr&appid=" + API_KEY
+    url = "https://api.openweathermap.org/data/2.5/weather?q=Brest,fr&lang=fr&units=metric&appid=" + API_KEY
     response = requests.get(url)
     data = json.loads(response.text)
     return data
