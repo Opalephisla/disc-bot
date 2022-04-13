@@ -30,8 +30,4 @@ def get_weather_brest():
     url = "http://api.openweathermap.org/data/2.5/weather?q=Brest,fr&appid=" + API_KEY
     response = requests.get(url)
     data = json.loads(response.text)
-    temp = data["main"]["temp"]
-    hum = data["main"]["humidity"]
-    wind = data["wind"]["speed"]
-    rain = data["rain"]["3h"]
-    return temp, hum, wind, rain
+    return data
