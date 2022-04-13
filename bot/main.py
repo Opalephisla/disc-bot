@@ -14,12 +14,12 @@ slash = SlashCommand(bot)
 
 @slash.slash(name="test")
 async def test(ctx: SlashContext):
-    embed = Embed(title="Menu d'aide pour les commandes du bot "f"{bot.user.name}")
-    embed.add_field(name="/help", value="Permet d'afficher ce menu", inline=False)
-    embed.add_field(name="/metis", value="Affiche  un lien vers la plateforme Métis de l'AFPA", inline=False)
-    embed.add_field(name="/meteo", value="Renvoie la météo actuelle à Brest", inline=False)
+    embed = Embed(title="Météo à Brest")
+    embed.add_field(name="Température", value=server.get_weather_brest()[0], inline=False)
+    embed.add_field(name="Humidité", value=server.get_weather_brest()[1], inline=False)
+    embed.add_field(name="Vent", value=server.get_weather_brest()[2], inline=False)
+    embed.add_field(name="Pluie", value=server.get_weather_brest()[3], inline=False)
     await ctx.send(embed=embed)
-
 
 @slash.slash(name="help")
 async def help(ctx: SlashContext):
