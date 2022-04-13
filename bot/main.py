@@ -15,11 +15,14 @@ slash = SlashCommand(bot)
 @slash.slash(name="test")
 async def test(ctx: SlashContext):
     embed = Embed(title="Météo à Brest")
+    embed.set_author(name="OpenWeatherMap", url="https://openweathermap.org/", icon_url="https://openweathermap.org/themes/openweathermap/assets/img/logo_white_cropped.png")
+    embed.set_thumbnail(url="https://en.wikipedia.org/wiki/Brest,_France#/media/File:Brest_-_Le_Ch%C3%A2teau_-_PA00089847_-_011.JPG")
+
     embed.add_field(name="Température", value=str(server.get_weather_brest()["main"]["temp"]) + " °C", inline=False)
     embed.add_field(name="Humidité", value=str(server.get_weather_brest()["main"]["humidity"]) + " %", inline=False)
     embed.add_field(name="Vent", value=str(server.get_weather_brest()["wind"]["speed"]) + " noeuds", inline=False)
     embed.add_field(name="Pluie", value="Le temps sera " + str(server.get_weather_brest()["weather"][0]["description"]), inline=False)
-    embed.add_footer(text="Météo actuelle pour la ville de Brest, fourni par https://openweathermap.org/")
+    embed.set_footer(text="Météo actuelle pour la ville de Brest, fourni par https://openweathermap.org/")
     await ctx.send(embed=embed)
 
 @slash.slash(name="help")
