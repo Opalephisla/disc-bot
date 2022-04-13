@@ -16,7 +16,7 @@ slash = SlashCommand(bot)
 async def test(ctx: SlashContext):
     embed = Embed(title="Météo à Brest")
     embed.set_author(name="OpenWeatherMap", url="https://openweathermap.org/", icon_url="https://openweathermap.org/themes/openweathermap/assets/img/logo_white_cropped.png")
-    embed.set_thumbnail(url="https://en.wikipedia.org/wiki/Brest,_France#/media/File:Brest_-_Le_Ch%C3%A2teau_-_PA00089847_-_011.JPG")
+    embed.set_thumbnail(url="https://france3-regions.francetvinfo.fr/image/fSinvo3WjAiD0hmMwCdczuuROE8/930x620//filters:format(webp)/regions/2020/06/09/5edee5ff39b34_vlcsnap-2015-11-26-09h51m24s0.png")
 
     embed.add_field(name="Température", value=str(server.get_weather_brest()["main"]["temp"]) + " °C", inline=False)
     embed.add_field(name="Humidité", value=str(server.get_weather_brest()["main"]["humidity"]) + " %", inline=False)
