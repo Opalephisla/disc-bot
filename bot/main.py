@@ -19,6 +19,7 @@ async def test(ctx: SlashContext):
     embed.add_field(name="Humidité", value=server.get_weather_brest()["main"]["humidity"]+"%", inline=False)
     embed.add_field(name="Vent", value=server.get_weather_brest()["wind"]["speed"]+ noeuds, inline=False)
     embed.add_field(name="Pluie", value="Le temps sera" + server.get_weather_brest()["weather"][0]["description"], inline=False)
+    embed.add_footer(text="Météo actuelle pour la ville de Brest, fourni par https://openweathermap.org/")
     await ctx.send(embed=embed)
 
 @slash.slash(name="help")
