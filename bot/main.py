@@ -14,7 +14,7 @@ slash = SlashCommand(bot)
 
 @slash.slash(name="test")
 async def test(ctx: SlashContext):
-    embed = Embed(title="Menu d'aide pour les commandes du bot "f"{bot.user.name}"")
+    embed = Embed(title="Menu d'aide pour les commandes du bot "f"{bot.user.name}")
     embed.add_field(name="/help", value="Permet d'afficher ce menu", inline=False)
     embed.add_field(name="/metis", value="Affiche  un lien vers la plateforme Métis de l'AFPA", inline=False)
     embed.add_field(name="/meteo", value="Renvoie la météo actuelle à Brest", inline=False)
