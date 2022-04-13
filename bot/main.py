@@ -11,13 +11,6 @@ bot = Client(intents=Intents.default())
 bot = commands.Bot(command_prefix="!")
 slash = SlashCommand(bot)
 
-
-@slash.slash(name="test")
-async def test(ctx: SlashContext):
-    embed = Embed(title="Embed Test 123")
-    await ctx.send(embed=embed)
-
-
 @slash.slash(name="help")
 async def help(ctx: SlashContext):
     embed = Embed(title="Menu d'aide pour les commandes du bot {bot.user.name}")
