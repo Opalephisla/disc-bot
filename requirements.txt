@@ -5,3 +5,4 @@ PyNaCl
 dnspython
 discord-py-slash-command
 discord-py-interactions
+requests
